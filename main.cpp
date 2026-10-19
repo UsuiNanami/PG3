@@ -6,13 +6,14 @@
 
 using namespace std; // stdを省略して使用する！
 
-// 判定関数 (コールバック関数)
+// 判定関数 (コールバック関数) 
 void Result(int roll, int guess) {
-	printf("出目: %d\n", roll);
+	// 仕様書のフォーマットに合わせた表示
+	printf("出目は %d でした。\n", roll);
 
-	// 奇数1 偶数0
+	// 奇数:1 偶数:0
 	int isOdd = roll % 2;
-	if (isOdd) {
+	if (guess == isOdd) {
 		printf("正解\n");
 	}
 	else {
@@ -34,7 +35,7 @@ int main() {
 
 	// ユーザーの入力を取得
 	int userGuess = 0;
-	printf("丁(奇数)なら１，半(偶数)なら０を記入: ");
+	printf("半(奇数)なら１，丁(偶数)なら０を記入: ");
 	scanf_s("%d", &userGuess);
 
 	// サイコロを振る
@@ -42,9 +43,8 @@ int main() {
 
 	printf("サイコロを振っています...\n");
 
-	// 遅延実行関数を呼び出す
-	DelayReveal(Result, 2000, roll, userGuess); // 2秒遅延して結果を表示
-
+	// 遅延実行関数を呼び出す (3000ミリ秒 = 3秒指定)
+	DelayReveal(Result, 3000, roll, userGuess);
 
 	return 0;
 }
